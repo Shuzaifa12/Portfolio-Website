@@ -4,8 +4,8 @@ import image1 from './image1.png';
 import { client } from '@/sanity/lib/client';
 
 export default async function About () {
-  const query = `*[_type == "About_Description"]`
-  const data = await client.fetch(query, {}, { cache : 'no-store' })
+  const query = `*[_type == "About_Description"]`;
+  const data = await client.fetch(query, {}, { cache : 'no-store' });
 
   return (
     <>
