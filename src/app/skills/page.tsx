@@ -4,7 +4,7 @@ import React from 'react';
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 
-export default async function Skills () {
+async function Skills () {
 
   const query = `*[_type == "Skills"]`;
   const skills = await client.fetch(query, {}, { cache : "no-cache" }
@@ -30,4 +30,6 @@ export default async function Skills () {
       </div>
     </>
   )
+
+  export default Skills;
 }
