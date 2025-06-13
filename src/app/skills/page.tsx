@@ -1,138 +1,43 @@
-"use client"
-import React from 'react';
-import {Circle} from 'rc-progress';
 
-const Skills = () => {
+import { client } from "@/sanity/lib/client";
+import React from 'react';
+import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
+
+export default async function Skills () {
+
+  const query = `*[_type == "Skills"]`
+  const skills = await client.fetch(query, {}, { cache : "no-cache" })
+  console.log(skills)
+
   return (
     <>
-    <div className='py-3 px-12 my-8 block w-fit mx-auto md:w-full md:flex md:justify-between'>
-        <div className='w-48 relative my-4'>
-          {/* Circle with progress */}
-          <Circle
-            percent={85}
-            strokeWidth={6}
-            trailWidth={6}
-            trailColor="rgb(209,213,219)"
-            strokeColor="#FA6E00"
-            className='w-28 h-28 mx-auto my-4'
-          />
-          {/* Label inside the circle */}
-          <div className="w-fit h-fit absolute inset-0 flex mx-auto mt-12 md:mt-14 text-lg font-bold text-gray-300">
-            85%
+      {/* <div className="my-8 px-10 py-2 sm:flex sm:flex-wrap sm:justify-evenly md:justify-start sm:gap-4">
+        {skills.map((s:any , index:number) => (
+          <div key={index} className="border border-yellow-400 my-2 px-2 w-full sm:w-[18%] justify-between items-center">
+            <Image src={urlFor(s.image).url()} alt='loading' width={60} height={60} className="my-2 p-[2px] rounded-md border border-yellow-400 mx-auto bg-slate-100"/>
+            <p className="font-bold text-2xl my-2 text-center text-wrap">{s.name}</p>
           </div>
-         <h1 className='my-2 text-center text-gray-300 font-bold p-2 text-lg'>HTML 5</h1>
-        </div>
+        ))}
 
-
-        <div className='w-48 relative my-4'>
-          {/* Circle with progress */}
-          <Circle
-            percent={85}
-            strokeWidth={6}
-            trailWidth={6}
-            trailColor="rgb(209,213,219)"
-            strokeColor="#FA6E00"
-            className='w-28 h-28 mx-auto my-4'
+      </div> */}
+      <div className="my-8 px-4 sm:px-10 py-4 flex flex-wrap justify-center sm:justify-evenly md:justify-start gap-4">
+        {skills.map((s: any, index: number) => (
+          <div
+          key={index}
+          className="border-2 border-[#FA6E00] px-4 py-3 w-full sm:w-[45%] md:w-[30%] lg:w-[18%] flex flex-col items-center rounded-md "
+        >
+          <Image
+            src={urlFor(s.image).url()}
+            alt={s.name || 'Skill Image'}
+            width={60}
+            height={60}
+            className="my-2 p-1 rounded-md bg-slate-100"
           />
-          {/* Label inside the circle */}
-          <div className="w-fit h-fit absolute inset-0 flex mx-auto mt-12 md:mt-14 text-lg font-bold text-gray-300">
-            85%
+          <p className="font-bold text-lg sm:text-xl text-center break-words">{s.name}</p>
           </div>
-         <h1 className=' my-2 text-center text-gray-300 font-bold p-2 text-lg'>CSS 3</h1>
-        </div>
-
-
-        <div className='w-48 relative my-4'>
-          {/* Circle with progress */}
-          <Circle
-            percent={75}
-            strokeWidth={6}
-            trailWidth={6}
-            trailColor="rgb(209,213,219)"
-            strokeColor="#FA6E00"
-            className='w-28 h-28 mx-auto my-4'
-          />
-          {/* Label inside the circle */}
-          <div className=" w-fit h-fit absolute inset-0 flex mx-auto mt-12 md:mt-14 text-lg font-bold text-gray-300">
-            75%
-          </div>
-         <h1 className='my-2 text-center text-gray-300 font-bold p-2 text-lg'>Typescript</h1>
-        </div>
-
-
-        <div className=' w-48 relative my-4'>
-          {/* Circle with progress */}
-          <Circle
-            percent={80}
-            strokeWidth={6}
-            trailWidth={6}
-            trailColor="rgb(209,213,219)"
-            strokeColor="#FA6E00"
-            className='w-28 h-28 mx-auto my-4'
-          />
-          {/* Label inside the circle */}
-          <div className=" w-fit h-fit absolute inset-0 flex mx-auto mt-12 md:mt-14 text-lg font-bold text-gray-300">
-            80%
-          </div>
-         <h1 className='my-2 text-center text-gray-300 font-bold p-2 text-lg'>Tailwind CSS</h1>
-        </div>
-    </div>
-
-    <div className='py-3 px-12 my-8 block w-fit mx-auto md:w-full md:flex md:justify-around'>
-        <div className='w-48 relative my-4'>
-          {/* Circle with progress */}
-          <Circle
-            percent={30}
-            strokeWidth={6}
-            trailWidth={6}
-            trailColor="rgb(209,213,219)"
-            strokeColor="#FA6E00"
-            className='w-28 h-28 mx-auto my-4'
-          />
-          {/* Label inside the circle */}
-          <div className=" w-fit h-fit absolute inset-0 flex mx-auto mt-12 md:mt-14 text-lg font-bold text-gray-300">
-            30%
-          </div>
-         <h1 className=' my-2 text-center text-gray-300 font-bold p-2 text-lg'>Next js</h1>
-        </div>
-
-
-        <div className='w-48 relative my-4'>
-          {/* Circle with progress */}
-          <Circle
-            percent={90}
-            strokeWidth={6}
-            trailWidth={6}
-            trailColor="rgb(209,213,219)"
-            strokeColor="#FA6E00"
-            className='w-28 h-28 mx-auto my-4'
-          />
-          {/* Label inside the circle */}
-          <div className=" w-fit h-fit absolute inset-0 flex mx-auto mt-12 md:mt-14 text-lg font-bold text-gray-300">
-            90%
-          </div>
-         <h1 className='my-2 text-center text-gray-300 font-bold p-2 text-lg'>Responsive Designs</h1>
-        </div>
-
-        <div className=' w-48 relative my-4'>
-          {/* Circle with progress */}
-          <Circle
-            percent={68}
-            strokeWidth={6}
-            trailWidth={6}
-            trailColor="rgb(209,213,219)"
-            strokeColor="#FA6E00"
-            className='w-28 h-28 mx-auto my-4'
-          />
-          {/* Label inside the circle */}
-          <div className="w-fit h-fit absolute inset-0 flex mx-auto mt-12 md:mt-14 text-lg font-bold text-gray-300">
-            68%
-          </div>
-         <h1 className=' my-2 text-center text-gray-300 font-bold p-2 text-lg'>BootStrap</h1>
-        </div>
-    </div>
+        ))}
+      </div>
     </>
   )
 }
-
-export default Skills
