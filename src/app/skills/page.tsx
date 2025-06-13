@@ -7,7 +7,7 @@ import { urlFor } from "@/sanity/lib/image";
 async function Skills () {
 
   const query = `*[_type == "Skills"]`;
-  const skills = await client.fetch(query, {}, { cache : "no-cache" }
+  const skills = await client.fetch(query, {}, { cache : 'no-cache' };
 
   return (
     <>
